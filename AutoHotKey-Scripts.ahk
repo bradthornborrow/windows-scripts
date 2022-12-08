@@ -3,7 +3,7 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-; Shortcut to force reload of script
+; Ctrl-Alt-R to force reload of script
 ^!r::
 	Send, ^s ; To save a changed script
 	Sleep, 300 ; give it time to save the script
@@ -17,7 +17,7 @@ return
 
 ; Ctrl-Alt-K to open Windows shutdown dialog
 ^!k::
-Run C:\Applications\Scripts\shutdown.js
+Run %A_ScriptDir%\shutdown-windows.js
 return
 
 ; Ctrl-Alt-C to centre active window
@@ -31,15 +31,22 @@ return
 	WinMove, %ActiveWindowTitle%,, %TargetX%, %TargetY% ; The actual action, moving the active window to our calculated coordinates.
 return
 
-; Ctrl-Alt-1 to resize active window to 90% of screen
-^!1::
+; Ctrl-Alt-H to centre active window
+^!h::
+	WinGetTitle, ActiveWindowTitle, A
+	WinMinimize, %ActiveWindowTitle%
+return
+
+; Ctrl-Alt-0 to maximize window with useless gaps
+^!0::
 	WinGetTitle, ActiveWindowTitle, A
 	{
-		TargetWidth := (A_ScreenWidth*0.9)
+		TargetWidth := (A_ScreenWidth*0.96)
 		TargetX := (A_ScreenWidth/2)-(TargetWidth/2)
-		TargetHeight := (A_ScreenHeight*0.85)
+		TargetHeight := (A_ScreenHeight*0.88)
 		TargetY := (A_ScreenHeight/2)-(TargetHeight/2)-48
 	}
+	WinRestore, %ActiveWindowTitle%
 	WinMove, %ActiveWindowTitle%,, %TargetX%, %TargetY%, %TargetWidth%, %TargetHeight%
 return
 
