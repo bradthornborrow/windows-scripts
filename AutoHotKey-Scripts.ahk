@@ -10,14 +10,19 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 	Reload
 Return
 
-; Ctrl-Q close active window
-^q::
+; Ctrl-Alt-Q close active window
+^!q::
 PostMessage, 0x112, 0xF060,,, A
 return
 
 ; Ctrl-Alt-K to open Windows shutdown dialog
 ^!k::
 Run %A_ScriptDir%\shutdown-windows.js
+return
+
+; Ctrl-Alt-N to open File Explorer
+^!n::
+Run Explorer.exe
 return
 
 ; Ctrl-Alt-C to centre active window
@@ -37,17 +42,23 @@ return
 	WinMinimize, %ActiveWindowTitle%
 return
 
-; Ctrl-Alt-0 to maximize window with useless gaps
-^!0::
+; Ctrl-Alt-[ to maximize window with useless gaps
+^![::
 	WinGetTitle, ActiveWindowTitle, A
 	{
-		TargetWidth := (A_ScreenWidth*0.96)
+		TargetWidth := (A_ScreenWidth*0.95)
 		TargetX := (A_ScreenWidth/2)-(TargetWidth/2)
-		TargetHeight := (A_ScreenHeight*0.88)
+		TargetHeight := (A_ScreenHeight*0.85)
 		TargetY := (A_ScreenHeight/2)-(TargetHeight/2)-48
 	}
 	WinRestore, %ActiveWindowTitle%
 	WinMove, %ActiveWindowTitle%,, %TargetX%, %TargetY%, %TargetWidth%, %TargetHeight%
+return
+
+; Ctrl-Alt-] to maximize window
+^!]::
+	WinGetTitle, ActiveWindowTitle, A
+	WinMaximize, %ActiveWindowTitle%
 return
 
 ; Alternate windows media controls
