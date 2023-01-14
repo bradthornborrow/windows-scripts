@@ -42,8 +42,8 @@ return
 	WinMinimize, %ActiveWindowTitle%
 return
 
-; Ctrl-Alt-[ to maximize window with useless gaps
-^![::
+; Ctrl-Alt-'-' to maximize window with useless gaps
+^!-::
 	WinGetTitle, ActiveWindowTitle, A
 	{
 		TargetWidth := (A_ScreenWidth*0.95)
@@ -55,8 +55,8 @@ return
 	WinMove, %ActiveWindowTitle%,, %TargetX%, %TargetY%, %TargetWidth%, %TargetHeight%
 return
 
-; Ctrl-Alt-] to maximize window
-^!]::
+; Ctrl-Alt-'=' to maximize window
+^!=::
 	WinGetTitle, ActiveWindowTitle, A
 	WinMaximize, %ActiveWindowTitle%
 return
