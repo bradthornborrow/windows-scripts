@@ -10,11 +10,6 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 	Reload
 Return
 
-; Ctrl-Alt-Q close active window
-^!q::
-PostMessage, 0x112, 0xF060,,, A
-return
-
 ; Ctrl-Alt-K to open Windows shutdown dialog
 ^!k::
 Run %A_ScriptDir%\shutdown-windows.js
@@ -36,14 +31,14 @@ return
 	WinMove, %ActiveWindowTitle%,, %TargetX%, %TargetY% ; The actual action, moving the active window to our calculated coordinates.
 return
 
-; Ctrl-Alt-H to centre active window
+; Ctrl-Alt-H to hide active window
 ^!h::
 	WinGetTitle, ActiveWindowTitle, A
 	WinMinimize, %ActiveWindowTitle%
 return
 
-; Ctrl-Alt-'-' to maximize window with useless gaps
-^!-::
+; Ctrl-Alt-'[' to maximize window with useless gaps
+^![::
 	WinGetTitle, ActiveWindowTitle, A
 	{
 		TargetWidth := (A_ScreenWidth*0.95)
@@ -55,8 +50,8 @@ return
 	WinMove, %ActiveWindowTitle%,, %TargetX%, %TargetY%, %TargetWidth%, %TargetHeight%
 return
 
-; Ctrl-Alt-'=' to maximize window
-^!=::
+; Ctrl-Alt-']' to maximize window
+^!]::
 	WinGetTitle, ActiveWindowTitle, A
 	WinMaximize, %ActiveWindowTitle%
 return
@@ -65,8 +60,6 @@ return
 ^!Left::Send   {Media_Prev}
 ^!Space::Send  {Media_Play_Pause}
 ^!Right::Send  {Media_Next}
-^!Up::Send     {Volume_Up}
-^!Down::Send   {Volume_Down}
 
 :::tsm::
 	Send ツ
