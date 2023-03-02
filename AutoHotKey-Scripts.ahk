@@ -42,13 +42,13 @@ return
 return
 
 ; Ctrl-Alt-'Down' to minimuize active window
-^!Down::
+^![::
 	WinGetTitle, ActiveWindowTitle, A
 	WinMinimize, %ActiveWindowTitle%
 return
 
 ; Ctrl-Alt-'Up' to maximize window
-^!Up::
+^!]::
 	WinGetTitle, ActiveWindowTitle, A
 	WinMaximize, %ActiveWindowTitle%
 return
