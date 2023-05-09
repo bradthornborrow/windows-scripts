@@ -13,18 +13,6 @@ RegWrite "0", "REG_DWORD", "HKEY_CURRENT_USER\Control Panel\Personalization\Desk
 	Reload
 }
 
-; Ctrl-Alt-K to open Windows shutdown dialog
-^!k::
-{
-	Run "shutdown-windows.js"
-}
-
-; Ctrl-Alt-L to lock workstation
-^!l::
-{
-	DllCall("LockWorkStation")
-}
-
 ; Ctrl-Alt-C to centre active window
 ^!c::
 {
