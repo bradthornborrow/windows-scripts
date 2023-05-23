@@ -2,6 +2,7 @@
 SendMode "Input"  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
 
+; Force wallpaper refresh on next restart
 RegWrite "0", "REG_DWORD", "HKEY_CURRENT_USER\Control Panel\Personalization\Desktop Slideshow", "LastTickHigh"
 RegWrite "0", "REG_DWORD", "HKEY_CURRENT_USER\Control Panel\Personalization\Desktop Slideshow", "LastTickLow"
 
