@@ -25,12 +25,6 @@ SetWorkingDir A_InitialWorkingDir ; Ensures a consistent starting directory.
     WinMove (A_ScreenWidth/2)-(Width/2), (A_ScreenHeight/2)-(Height/2),,, "A"
 }
 
-; Ctrl-Alt-'Up' to maximize window
-^!Up::WinMaximize "A"
-
-; Ctrl-Alt-'Down' to minimuize active window
-^!Down::WinMinimize "A"
-
 ; Alternate windows media controls
 ^!Left::Send "{Media_Prev}"
 ^!Space::Send "{Media_Play_Pause}"
@@ -39,11 +33,6 @@ SetWorkingDir A_InitialWorkingDir ; Ensures a consistent starting directory.
 :::tsm::
 {
 	Send "{RAW}ツ"
-}
-
-:::shrug::
-{
-	Send "{RAW}¯\_(ツ)_/¯"
 }
 
 ; Ctrl-Alt-N to open File Explorer
