@@ -1,13 +1,6 @@
 #
-# Create PowerShell default profile file if not present
+# Create PowerShell default profile if it doesn't exist
 #
-New-Item -Path $profile -Type File -Force  -ErrorAction SilentlyContinue | Out-Null
+New-Item -Path $profile -Type File -Force -ErrorAction SilentlyContinue | Out-Null
 #
-# If VS Code installed, open in VS Code, otherwise use notepad
-#
-if (Get-Command code -errorAction SilentlyContinue)
-{
-    code $profile
-} else {
-    notepad $profile
-}
+Copy-Item  .\Microsoft.PowerShell_profile.ps1 -Destination $profile -Force -ErrorAction SilentlyContinue | Out-Null
