@@ -1,5 +1,8 @@
 ###
-### PowerShell default profile
+### Commands to enable PowerShell scripts and create profile folder
+###
+### Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+### New-Item -Path $profile -Type File -Force
 ###
 
 # Compute file hashes - useful for checking successful downloads 
