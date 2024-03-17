@@ -3,41 +3,37 @@ SetWorkingDir A_ScriptDir
 
 ^!r::Reload
 
-^!c::
+ResizeAndCentre(Width,Height)
 {
     MonitorGetWorkArea ,,, &ScreenWidth, &ScreenHeight
-    WinGetPos ,, &Width, &Height, "A" ; Get the active window's position, used for our calculations.
+    WinRestore "A" 
 
+    If (Width <= 100)
+        Width := Integer(ScreenWidth * Width/100)
+
+    If (Height <= 100)
+        Height := Integer(ScreenHeight * Height/100)
+    
     TargetX := (ScreenWidth/2)-(Width/2) ; Calculate the horizontal target where we'll move the window.
     TargetY := (ScreenHeight/2)-(Height/2) ; Calculate the vertical placement of the window.
- 
-    WinMove TargetX, TargetY,,, "A" ; Move the window to the calculated coordinates.
+
+    WinMove TargetX, TargetY, Width, Height, "A" 
+}
+
+^!c::
+{
+    WinGetPos ,, &Width, &Height, "A" ; Get the active window's position, used for our calculations.
+    ResizeAndCentre(Width,Height)
 }
 
 ^![::
 {
-    MonitorGetWorkArea ,,, &ScreenWidth, &ScreenHeight
-    WinRestore "A" 
-    Width := 2048
-    Height := 1280
-
-    TargetX := (ScreenWidth/2)-(Width/2) ; Calculate the horizontal target where we'll move the window.
-    TargetY := (ScreenHeight/2)-(Height/2) ; Calculate the vertical placement of the window.
-
-    WinMove TargetX, TargetY, Width, Height, "A" 
+    ResizeAndCentre(80,80)
 }
 
 ^!]::
 {
-    MonitorGetWorkArea ,,, &ScreenWidth, &ScreenHeight
-    WinRestore "A" 
-    Width := 2280
-    Height := 1360
-
-    TargetX := (ScreenWidth/2)-(Width/2) ; Calculate the horizontal target where we'll move the window.
-    TargetY := (ScreenHeight/2)-(Height/2) ; Calculate the vertical placement of the window.
-
-    WinMove TargetX, TargetY, Width, Height, "A" 
+    ResizeAndCentre(90,90)
 }
 
 ; Define default media playback keys
