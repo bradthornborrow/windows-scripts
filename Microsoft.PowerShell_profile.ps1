@@ -42,3 +42,6 @@ function admin
 # with elevated rights. 
 Set-Alias -Name su -Value admin
 Set-Alias -Name sudo -Value admin
+
+# Function using SendKeys to keep display from sleeping
+function awake { $wsh = New-Object -ComObject Wscript.Shell; while (1) { $wsh.SendKeys('+{F15}'); Start-Sleep -seconds 60 } }
